@@ -39,7 +39,7 @@ void MainWindow::on_pushButton_clicked()
     month = ui->month->text();
     Product* pro= new Product(name, stock, year, month);
     plist->push_back(pro);
-    ui->added->insertPlainText(name +" "+ year +"/"+ month + "#" + stock + " added\n");
+    ui->added->insertPlainText(name +" "+ year +"/"+ month + " #" + stock + " added\n");
 
     ui->n_stock->clear();
 

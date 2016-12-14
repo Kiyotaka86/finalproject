@@ -43,7 +43,12 @@ public:
         this->name=n;
         this->stock=s;
         this->year=y;
-        this->month=m;
+
+        if(m.toInt()<10)
+            this->month = "0"+m;
+        else
+            this->month=m;
+
         output <<name << QString::number(stock) << year + "/" + month;
     }
 
