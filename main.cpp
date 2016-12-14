@@ -1,5 +1,11 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include <QDataStream>
+#include <QString>
+#include <QStringList>
+#include <QTextStream>
+#include <vector>
+
 
 int main(int argc, char *argv[])
 {
