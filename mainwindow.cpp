@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    plist = new std::vector<Product*>;
+    plist = new QVector<Product*> ;
     defaultwindow();
 
 }
@@ -34,12 +34,12 @@ void MainWindow::on_pushButton_clicked()
 {
     name= ui->Product_name->text();
     stock=ui->n_stock->value();
-    year = ui->year->value();
-    month = ui->month->value();
+    year = ui->year->text();
+
+    month = ui->month->text();
     Product* pro= new Product(name, stock, year, month);
     plist->push_back(pro);
-    ui->added->insertPlainText(name +" "+ QString::number(year)+"/"+QString::number(month)+" added\n");
-
+    ui->added->insertPlainText(name +" "+ year +"/"+ month +" added\n");
 
     ui->n_stock->clear();
 
@@ -62,16 +62,15 @@ void MainWindow::on_refresh_clicked()
     ui->table1->setHorizontalHeaderLabels(tableheader);
     if(plist->size()==0){}
     else{
-        for(size_t i=0;i < plist->size(); ++i)
+        for(int i=0;i < plist->size(); ++i)
         {
-            ui->table1->insertRow(i);
-            ui->table1->setItem(i,0, new QTableWidgetItem("mmkmk"));
-            ui->table1->setItem(i,1, new QTableWidgetItem ("kokoko"));
-            ui->table1->setItem(i,2, new QTableWidgetItem ("loko"));
+            ui->table1->insertRow(0);
+            ui->table1->setItem(0,0, new QTableWidgetItem(plist->operator [](i)->output[0]));
+            ui->table1->setItem(0,1, new QTableWidgetItem (plist->operator [](i)->output[1]));
+            ui->table1->setItem(0,2, new QTableWidgetItem (plist->operator [](i)->output[2]));
         }
     }
 }
-
 
 QString Product::getName() const
 {

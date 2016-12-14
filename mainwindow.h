@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QTableWidget>
+#include <QTableView>
+#include <QVector>
 
 namespace Ui {
 class MainWindow;
@@ -29,36 +30,34 @@ private:
     Ui::MainWindow *ui;
     QString name;
     int stock;
-    int year;
-    int month;
-    std::vector<Product*>* plist;
+    QString year;
+    QString month;
+    QVector<Product*> *plist;
     void defaultwindow();
     void printtable();
 };
 
 class Product{
 public:
-    Product(QString n, int stock, int year, int month){
+    Product(QString n, int s, QString y, QString m){
         this->name=n;
-        this->stock=stock;
-        this->year=year;
-        this->month=month;
-        this->output <<name << QString::number(stock) << QString::number(year) + "/" + QString::number(month);
+        this->stock=s;
+        this->year=y;
+        this->month=m;
+        output <<name << QString::number(stock) << year + "/" + month;
     }
 
-
+    ~Product(){}
     QStringList output;
-
     QString getName() const;
 
 private:
     QString name;
     int stock;
-    int year;
-    int month;
+    QString year;
+    QString month;
 
 };
-
 
 
 

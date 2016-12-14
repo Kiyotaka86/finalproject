@@ -68,6 +68,9 @@
       <height>24</height>
      </rect>
     </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
    </widget>
    <widget class="QSpinBox" name="year">
     <property name="geometry">
@@ -100,6 +103,9 @@
       <width>581</width>
       <height>321</height>
      </rect>
+    </property>
+    <property name="sortingEnabled">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QTextBrowser" name="added">
