@@ -22,9 +22,9 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-
-
     void on_refresh_clicked();
+
+    void on_regexe_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -34,7 +34,7 @@ private:
     QString month;
     QVector<Product*> *plist;
     void defaultwindow();
-    void printtable();
+    void linearregg(QString n, QVector<Product*> &p);
 };
 
 class Product{
@@ -55,15 +55,13 @@ public:
     ~Product(){}
     QStringList output;
     QString getName() const;
-
+    bool operator< (Product b);
 private:
     QString name;
     int stock;
     QString year;
     QString month;
-
 };
-
 
 
 #endif // MAINWINDOW_H

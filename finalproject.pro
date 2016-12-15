@@ -14,9 +14,8 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    linea.cpp
+    linear.cpp
 
-HEADERS  += mainwindow.h \
-    linea.h
+HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
