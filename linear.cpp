@@ -2,9 +2,6 @@
 #include "ui_mainwindow.h"
 
 
-
-
-
 void MainWindow::linearregg(QString n, QVector<Product*> &p)
 {
     QVector<Product*> copy;

@@ -42,7 +42,7 @@ void MainWindow::on_pushButton_clicked()
     else{
         Product* pro= new Product(name, stock, year, month);
         plist->push_back(pro);
-        ui->added->insertPlainText(name +" "+ year +"/"+ month + " #" + stock + " added\n");
+        ui->added->insertPlainText(name +" "+ year +"/"+ month + " #" + stock + " added\n"+QString::number(pro->getYm()));
     }
 }
 
@@ -74,6 +74,11 @@ QString Product::getName() const
 bool Product::operator < (Product b)
 {
     return output[2]<b.output[2];
+}
+
+int Product::getYm() const
+{
+    return ym;
 }
 
 void MainWindow::on_regexe_clicked()

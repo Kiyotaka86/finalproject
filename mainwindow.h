@@ -50,17 +50,23 @@ public:
             this->month=m;
 
         output <<name << QString::number(stock) << year + "/" + month;
+
+        ym = (y+month).toInt();
+
     }
 
     ~Product(){}
     QStringList output;
     QString getName() const;
     bool operator< (Product b);
+    int getYm() const;
+
 private:
     QString name;
     int stock;
     QString year;
     QString month;
+    int ym;
 };
 
 
