@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTableView>
 #include <QVector>
+#include <cassert>
 
 namespace Ui {
 class MainWindow;
@@ -51,7 +52,7 @@ public:
 
         output <<name << QString::number(stock) << year + "/" + month;
 
-        ym = (y+month).toInt();
+        ym = (year+month).toInt();
 
     }
 
@@ -60,6 +61,7 @@ public:
     QString getName() const;
     bool operator< (Product b);
     int getYm() const;
+    int getStock() const;
 
 private:
     QString name;
