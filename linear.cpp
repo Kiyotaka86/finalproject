@@ -15,7 +15,7 @@ void MainWindow::linearregg(QString n, QVector<Product*> &p)
 
 
     // y = number of stock, copy->operator[i]()->stock;  y= copy[0] - copy.end() -1
-    // x = number ofelements... i+1 - copy->size()
+    // x = number of elements... i+1 - copy->size()
 
     QVector<int> y;
     QVector<int> x;
@@ -38,20 +38,7 @@ void MainWindow::linearregg(QString n, QVector<Product*> &p)
     for(int i=0; i<k; ++i)
         sumxx += (x[i])*(x[i]);
 
-
-    //calculate slope
-    double snumerator = 0.0;
-    double sdenominator = 0.0;
-
-//        for(int i=0; i<k; ++i){
-//            snumerator += (x[i] - avgx) * (y[i] - avgy);
-//            sdenominator += (x[i] - avgx) * (x[i] - avgx);
-//        }
-
-//        if(sdenominator == 0){
-//            assert("the denominator is 0");
-//        }
-
+    //calculate slope and intercept, then the next val
      double slope = (((k)*(sumxy)-(sumx)*(sumy)))/((k)*(sumxx)-(sumx)*(sumx));
 
      double intercept = ((sumy) - (slope)*(sumx)) / (k);

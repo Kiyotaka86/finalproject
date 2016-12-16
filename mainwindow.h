@@ -36,6 +36,8 @@ private:
     QVector<Product*> *plist;
     void defaultwindow();
     void linearregg(QString n, QVector<Product*> &p);
+    void outstream();
+
 };
 
 class Product{

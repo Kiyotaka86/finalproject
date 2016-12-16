@@ -103,3 +103,9 @@ void MainWindow::on_regexe_clicked()
         ui->added->insertPlainText("Put a name exists\n");
 
 }
+
+void MainWindow::outstream()
+{
+
+
+}
