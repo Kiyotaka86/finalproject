@@ -45,11 +45,11 @@ void MainWindow::linearregg(QString n, QVector<Product*> &p)
 
      double next = (slope)*(k+1) + (intercept);
 
-    ui->added->insertPlainText(QString::number(sumx) + "\n");
-    ui->added->insertPlainText(QString::number(sumy) + "\n");
-    ui->added->insertPlainText(QString::number(sumxx) + "\n");
-    ui->added->insertPlainText(QString::number(sumxy) + "\n");
-    ui->added->insertPlainText(QString::number(next) + "\n");
+    //ui->added->insertPlainText(QString::number(sumx) + "\n");
+    //ui->added->insertPlainText(QString::number(sumy) + "\n");
+    //ui->added->insertPlainText(QString::number(sumxx) + "\n");
+    //ui->added->insertPlainText(QString::number(sumxy) + "\n");
+    ui->added->insertPlainText("The next stock might be " + QString::number(next) + "\n");
 
 
 
