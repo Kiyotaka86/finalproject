@@ -53,7 +53,7 @@ class Product{
 public:
     Product (QString input);
     Product(QString n, int s, QString y, QString m);
-    ~Product(){delete check;}
+    ~Product(){}
     Product (const Product&) = delete;
     void operator = (const Product&) = delete;
     QStringList output;
@@ -61,7 +61,6 @@ public:
     bool operator< (Product b);
     int getYm() const;
     int getStock() const;
-   // QCheckBox *check;
 
 private:
     QString name;
