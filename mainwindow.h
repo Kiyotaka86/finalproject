@@ -9,6 +9,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QCheckBox>
 
 namespace Ui {
 class MainWindow;
@@ -29,12 +30,10 @@ public:
 private slots:
     void on_pushButton_clicked();
     void on_refresh_clicked();
-
     void on_regexe_clicked();
-
     void on_save_clicked();
-
     void on_load_clicked();
+    void on_delete_items_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -48,7 +47,6 @@ private:
     void linearregg(QString n, QVector<Product*> &p);
     void outstream();
     void instream();
-
 };
 
 class Product{
@@ -56,6 +54,8 @@ public:
     Product (QString input);
     Product(QString n, int s, QString y, QString m);
     ~Product(){}
+    Product (const Product&) = delete;
+    void operator = (const Product&) = delete;
     QStringList output;
     QString getName() const;
     bool operator< (Product b);
@@ -69,6 +69,8 @@ private:
     QString month;
     int ym;
 };
+//any copy of this class must not exist...
+
 
 
 #endif // MAINWINDOW_H

@@ -19,10 +19,12 @@ MainWindow::~MainWindow()
 void MainWindow::refreshtable()
 {
     ui->table1->clear();
+    ui->table1->setColumnCount(3);
     ui->table1->setRowCount(0);
     QStringList tableheader;
     tableheader <<"Name" <<"Stock"<<"Year/Month";
     ui->table1->setHorizontalHeaderLabels(tableheader);
+
 
     if(plist->size()==0){}
     else{
@@ -155,7 +157,7 @@ void MainWindow::on_regexe_clicked()
     if(inname)
         linearregg(liname, *plist);
     else
-        ui->added->insertPlainText("Put a name exists\n");
+        ui->added->insertPlainText("Put a name on table\n");
 
 }
 
@@ -167,4 +169,23 @@ void MainWindow::on_save_clicked()
 void MainWindow::on_load_clicked()
 {
     instream();
+}
+
+void MainWindow::on_delete_items_clicked()
+{
+    QMessageBox comfdel;
+    comfdel.setText("Are you sure to delete all items?");
+    comfdel.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    comfdel.setDefaultButton(QMessageBox::Cancel);
+    int kk = comfdel.exec();
+
+    if(kk==QMessageBox::Cancel)
+        return;
+
+    for(int i=0; i<plist->size(); ++i)
+    {
+            plist->clear();
+    }
+
+    refreshtable();
 }
