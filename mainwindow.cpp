@@ -66,6 +66,9 @@ void MainWindow::on_refresh_clicked()
             ui->table1->setItem(0,2, new QTableWidgetItem (plist->operator [](i)->output[2]));
         }
     }
+
+    outstream();
+
 }
 
 QString Product::getName() const

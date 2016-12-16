@@ -5,6 +5,10 @@
 #include <QTableView>
 #include <QVector>
 #include <cassert>
+#include <QTextStream>
+#include <QFile>
+#include <QFileDialog>
+#include <QMessageBox>
 
 namespace Ui {
 class MainWindow;
