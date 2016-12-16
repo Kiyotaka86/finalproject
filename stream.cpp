@@ -75,6 +75,7 @@ void MainWindow::instream()
          }
 
     file.close();
+    refreshtable();
     }
 }
 

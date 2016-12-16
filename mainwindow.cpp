@@ -16,6 +16,26 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::refreshtable()
+{
+    ui->table1->clear();
+    ui->table1->setRowCount(0);
+    QStringList tableheader;
+    tableheader <<"Name" <<"Stock"<<"Year/Month";
+    ui->table1->setHorizontalHeaderLabels(tableheader);
+
+    if(plist->size()==0){}
+    else{
+        for(int i=0;i < plist->size(); ++i)
+        {
+            ui->table1->insertRow(0);
+            ui->table1->setItem(0,0, new QTableWidgetItem (plist->operator [](i)->output[0]));
+            ui->table1->setItem(0,1, new QTableWidgetItem (plist->operator [](i)->output[1]));
+            ui->table1->setItem(0,2, new QTableWidgetItem (plist->operator [](i)->output[2]));
+        }
+    }
+}
+
 void MainWindow::defaultwindow()
 {
     ui->table1->setColumnCount(3);
@@ -35,37 +55,39 @@ void MainWindow::on_pushButton_clicked()
     name= ui->Product_name->text();
     stock=ui->n_stock->value();
     year = ui->year->text();
-    month = ui->month->text();
+    rawmonth = ui->month->text();
+
+    if(rawmonth.toInt()<10)
+        this->month = "0"+rawmonth;
+    else
+        this->month=rawmonth;
+
 
     if(name=="")
     {
         ui->added->insertPlainText("You need at least name!\n");
+        return;
     }
-    else{
-        Product* pro= new Product(name, stock, year, month);
-        plist->push_back(pro);
-        ui->added->insertPlainText(name +" "+ year +"/"+ month + " " + QString::number(stock) + " added\n");
+
+    for(auto i: *plist)
+    {
+        if(i->getName() == name && i->output[2] == year+"/"+month  )
+        {
+            ui->added->insertPlainText("You cannot add the same item in the same month!\n");
+            return;
+        }
     }
+
+
+    Product* pro= new Product(name, stock, year, month);
+    plist->push_back(pro);
+    ui->added->insertPlainText(name +" "+ year +"/"+ month + " " + QString::number(stock) + " added\n");
+
 }
 
 void MainWindow::on_refresh_clicked()
 {
-    ui->table1->clear();
-    ui->table1->setRowCount(0);
-    QStringList tableheader;
-    tableheader <<"Name" <<"Stock"<<"Year/Month";
-    ui->table1->setHorizontalHeaderLabels(tableheader);
-
-    if(plist->size()==0){}
-    else{
-        for(int i=0;i < plist->size(); ++i)
-        {
-            ui->table1->insertRow(0);
-            ui->table1->setItem(0,0, new QTableWidgetItem (plist->operator [](i)->output[0]));
-            ui->table1->setItem(0,1, new QTableWidgetItem (plist->operator [](i)->output[1]));
-            ui->table1->setItem(0,2, new QTableWidgetItem (plist->operator [](i)->output[2]));
-        }
-    }
+    refreshtable();
 }
 
 Product::Product(QString input)
@@ -92,11 +114,7 @@ Product::Product(QString n, int s, QString y, QString m)
     this->name=n;
     this->stock=s;
     this->year=y;
-
-    if(m.toInt()<10)
-        this->month = "0"+m;
-    else
-        this->month=m;
+    this->month=m;
 
     output <<name << QString::number(stock) << year + "/" + month;
 
