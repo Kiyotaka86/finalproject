@@ -24,6 +24,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     QTableView *table1;
+    void refreshtable();
 
 private slots:
     void on_pushButton_clicked();
@@ -40,6 +41,7 @@ private:
     QString name;
     int stock;
     QString year;
+    QString rawmonth;
     QString month;
     QVector<Product*> *plist;
     void defaultwindow();
