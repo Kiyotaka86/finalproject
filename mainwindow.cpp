@@ -19,29 +19,34 @@ MainWindow::~MainWindow()
 void MainWindow::refreshtable()
 {
     ui->table1->clear();
+    ui->table1->setColumnCount(4);
+    ui->table1->setColumnWidth(0,20);
     ui->table1->setRowCount(0);
     QStringList tableheader;
-    tableheader <<"Name" <<"Stock"<<"Year/Month";
+    tableheader <<" " <<"Name" <<"Stock"<<"Year/Month";
     ui->table1->setHorizontalHeaderLabels(tableheader);
+    ui->table1->setColumnWidth(0,30);
 
     if(plist->size()==0){}
     else{
         for(int i=0;i < plist->size(); ++i)
         {
             ui->table1->insertRow(0);
-            ui->table1->setItem(0,0, new QTableWidgetItem (plist->operator [](i)->output[0]));
-            ui->table1->setItem(0,1, new QTableWidgetItem (plist->operator [](i)->output[1]));
-            ui->table1->setItem(0,2, new QTableWidgetItem (plist->operator [](i)->output[2]));
+            ui->table1->setCellWidget(0,0, new QCheckBox (plist->operator [](i)->check));
+            ui->table1->setItem(0,1, new QTableWidgetItem (plist->operator [](i)->output[0]));
+            ui->table1->setItem(0,2, new QTableWidgetItem (plist->operator [](i)->output[1]));
+            ui->table1->setItem(0,3, new QTableWidgetItem (plist->operator [](i)->output[2]));
         }
     }
 }
 
 void MainWindow::defaultwindow()
 {
-    ui->table1->setColumnCount(3);
+    ui->table1->setColumnCount(4);
+    ui->table1->setColumnWidth(0,30);
     ui->table1->setRowCount(0);
     QStringList tableheader;
-    tableheader <<"Name" <<"Stock"<<"Year/Month";
+    tableheader <<" " <<"Name" <<"Stock"<<"Year/Month";
     ui->table1->setHorizontalHeaderLabels(tableheader);
 
     ui->month->setRange(1,12);
@@ -103,7 +108,7 @@ Product::Product(QString input)
     this->stock = input.right(rangestock).toInt();
 
     output <<name << QString::number(stock) << year + "/" + month;
-
+    //check = new QCheckBox();
     ym = (year+month).toInt();
 
 }
@@ -117,7 +122,7 @@ Product::Product(QString n, int s, QString y, QString m)
     this->month=m;
 
     output <<name << QString::number(stock) << year + "/" + month;
-
+   // check = new QCheckBox();
     ym = (year+month).toInt();
 
 }
@@ -155,7 +160,7 @@ void MainWindow::on_regexe_clicked()
     if(inname)
         linearregg(liname, *plist);
     else
-        ui->added->insertPlainText("Put a name exists\n");
+        ui->added->insertPlainText("Put a name on table\n");
 
 }
 
@@ -167,4 +172,15 @@ void MainWindow::on_save_clicked()
 void MainWindow::on_load_clicked()
 {
     instream();
+}
+
+void MainWindow::on_delete_items_clicked()
+{
+    for(int i=0; i<plist->size(); ++i)
+    {
+        if(plist->operator[](i)->check->isChecked()==true)
+            plist->remove(i);
+    }
+
+    refreshtable();
 }
