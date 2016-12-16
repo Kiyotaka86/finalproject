@@ -14,7 +14,8 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    linear.cpp
+    linear.cpp \
+    stream.cpp
 
 HEADERS  += mainwindow.h
 

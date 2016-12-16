@@ -5,6 +5,10 @@
 #include <QTableView>
 #include <QVector>
 #include <cassert>
+#include <QTextStream>
+#include <QFile>
+#include <QFileDialog>
+#include <QMessageBox>
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +31,10 @@ private slots:
 
     void on_regexe_clicked();
 
+    void on_save_clicked();
+
+    void on_load_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString name;
@@ -37,27 +45,14 @@ private:
     void defaultwindow();
     void linearregg(QString n, QVector<Product*> &p);
     void outstream();
+    void instream();
 
 };
 
 class Product{
 public:
-    Product(QString n, int s, QString y, QString m){
-        this->name=n;
-        this->stock=s;
-        this->year=y;
-
-        if(m.toInt()<10)
-            this->month = "0"+m;
-        else
-            this->month=m;
-
-        output <<name << QString::number(stock) << year + "/" + month;
-
-        ym = (year+month).toInt();
-
-    }
-
+    Product (QString input);
+    Product(QString n, int s, QString y, QString m);
     ~Product(){}
     QStringList output;
     QString getName() const;

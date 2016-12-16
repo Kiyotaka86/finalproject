@@ -68,6 +68,43 @@ void MainWindow::on_refresh_clicked()
     }
 }
 
+Product::Product(QString input)
+{
+    this->month = input.right(2);
+    input.chop(3);
+    this->year = input.right(4);
+    input.chop(5);
+    int namerange = input.indexOf(",")-1;
+    this->name = input.left(namerange);
+    namerange+=2;
+    int rangestock = input.size() - namerange;
+    this->stock = input.right(rangestock).toInt();
+
+    output <<name << QString::number(stock) << year + "/" + month;
+
+    ym = (year+month).toInt();
+
+}
+
+
+Product::Product(QString n, int s, QString y, QString m)
+{
+    this->name=n;
+    this->stock=s;
+    this->year=y;
+
+    if(m.toInt()<10)
+        this->month = "0"+m;
+    else
+        this->month=m;
+
+    output <<name << QString::number(stock) << year + "/" + month;
+
+    ym = (year+month).toInt();
+
+}
+
+
 QString Product::getName() const
 {
     return name;
@@ -104,8 +141,12 @@ void MainWindow::on_regexe_clicked()
 
 }
 
-void MainWindow::outstream()
+void MainWindow::on_save_clicked()
 {
+    outstream();
+}
 
-
+void MainWindow::on_load_clicked()
+{
+    instream();
 }

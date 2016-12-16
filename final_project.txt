@@ -1,0 +1,18 @@
+Kiyotaka Kokubun
+UID:104669898
+PIC10C
+Salazar
+FinalProject
+
+PIC10C_HW1
+https://github.com/Kiyotaka86/PIC10C_HW1/
+
+URL of final project
+https://github.com/Kiyotaka86/finalproject/
+
+
+
+This application provides simple storage of the number of stocks (or something other) of your storage. It contains the number of a particular product monthly, then it predicts the future number by using the linear regression method. 
+
+
+
