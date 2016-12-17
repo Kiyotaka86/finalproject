@@ -48,8 +48,13 @@ void MainWindow::defaultwindow()
 
     ui->month->setRange(1,12);
     ui->year->setRange(1800,3000);
-    ui->year->setValue(2015);
+    ui->year->setValue(2016);
     ui->n_stock->setMaximum(999999999);
+    ui->delete_items->setToolTip("Delete all elements in the table");
+    ui->refresh->setToolTip("Reload the table");
+    ui->save->setToolTip("Save current table as CSV file");
+    ui->load->setToolTip("Load a table from CSV file");
+    ui->regexe->setToolTip("Predict the number of the storage of an item in the next month");
 }
 
 void MainWindow::on_pushButton_clicked()

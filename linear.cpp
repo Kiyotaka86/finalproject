@@ -49,7 +49,7 @@ void MainWindow::linearregg(QString n, QVector<Product*> &p)
     //ui->added->insertPlainText(QString::number(sumy) + "\n");
     //ui->added->insertPlainText(QString::number(sumxx) + "\n");
     //ui->added->insertPlainText(QString::number(sumxy) + "\n");
-    ui->added->insertPlainText("The stock in the next month might be " + QString::number(next) + "\n");
+    ui->added->insertPlainText("The stock in the next month might be around" + QString::number(next) + "\n");
 
 
 
